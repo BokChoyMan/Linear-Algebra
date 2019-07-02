@@ -1,9 +1,22 @@
 public class Main {
     public static void main(String[] args) {
-        double[][] arr = {{1,4,2},{3,-1,-1},{10,-5,3}};
+        //construct new matrices with 2d double array
+        double[][] arr = {{-2,4},{5,-14}};
+        //call methods on Matrix object, ex m.inverse(true)
         Matrix m = new Matrix(arr);
-        Matrix inv = Matrix.inverse(m, true);
-        System.out.println(inv);
+        /*
+        Supported operations:
+            -addition
+            -multiplication
+            -reduce to reduced row echelon or upper triangular form with work
+            -determinants with work
+            -inverses with work
+            -writing matrix as product of elementary matrices
+            -transpose
+            -different basic row operations
+        Answers are given in reduced fraction form.
+         */
+        m.factor(true);
     }
 
 }

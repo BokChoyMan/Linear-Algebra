@@ -111,48 +111,44 @@ public class Fraction {
     /**
      * adds 2 Fractions by multiplying each Fraction's numerator by the denominator of the other Fraction.
      * The numerator is added, then the Fraction is simplified.
-     * @param a
-     * @param b
+     * @param f
      * @return
      */
-    public static Fraction add(Fraction a, Fraction b){
-        Fraction temp = new Fraction(a.numerator*b.denominator + b.numerator*a.denominator,a.denominator*b.denominator);
+    public Fraction add(Fraction f){
+        Fraction temp = new Fraction(this.numerator*f.denominator + f.numerator*this.denominator,this.denominator*f.denominator);
         temp.simplify();
         return temp;
     }
 
     /**
      *
-     * @param a
-     * @param b
+     * @param f
      * @return
      */
-    public static Fraction subtract(Fraction a, Fraction b){
-        Fraction temp = new Fraction(a.numerator*b.denominator - b.numerator*a.denominator,a.denominator*b.denominator);
+    public Fraction subtract(Fraction f){
+        Fraction temp = new Fraction(this.numerator*f.denominator - f.numerator*this.denominator,this.denominator*f.denominator);
         temp.simplify();
         return temp;
     }
 
     /**
      * multiply both Fraction's numerator and denominator, then the Fraction is simplified
-     * @param a
-     * @param b
+     * @param f
      * @return
      */
-    public static Fraction multiply(Fraction a, Fraction b){
-        Fraction temp = new Fraction(a.numerator*b.numerator,a.denominator*b.denominator);
+    public Fraction multiply(Fraction f){
+        Fraction temp = new Fraction(this.numerator*f.numerator,this.denominator*f.denominator);
         temp.simplify();
         return temp;
     }
 
     /**
      * 2 Fractions are multiplied by one's inverse
-     * @param a
-     * @param b
+     * @param f
      * @return
      */
-    public static Fraction divide(Fraction a, Fraction b){
-        Fraction temp = new Fraction(a.numerator*b.denominator,a.denominator*b.numerator);
+    public Fraction divide(Fraction f){
+        Fraction temp = new Fraction(this.numerator*f.denominator,this.denominator*f.numerator);
         temp.simplify();
         return temp;
     }
