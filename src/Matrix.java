@@ -15,13 +15,14 @@ public class Matrix {
     }
 
     public static int prompt(String size){
-        return input(size);
+        int s = input(size);
+        return s;
     }
 
     private static int input(String msg){
         Scanner in = new Scanner(System.in);
         try{
-            System.out.print("Please Enter Number of" + msg + " : ");
+            System.out.print("Please Enter Number of " + msg + " : ");
             return in.nextInt();
         } catch(InputMismatchException e){
             System.out.println("Invalid input");
@@ -52,9 +53,23 @@ public class Matrix {
         String str = "";
         for (int i = 0; i < SizeRow; i++) {
             for (int j = 0; j < SizeCol; j++) {
-                str += matrix[SizeRow][SizeCol] + " ";
+                if(i == 0 && j == 0)
+                    str += "⎡ ";
+                else if(i == SizeRow - 1 && j == 0)
+                    str += "⎣ ";
+                else if(j == 0 && i != SizeRow - 1)
+                    str += "⎜ ";
+
+                str += matrix[i][j] + " ";
+
+                if (i == 0 && j == SizeCol - 1)
+                    str += "⎤ \n";
+                else if (i == SizeRow -1 && j == SizeCol-1)
+                    str += "⎦";
             }
-            str += "\n";
+            if(i != 0 && i != SizeRow-1){
+                str += "⎟\n";
+            }
         }
         return str;
     }
@@ -65,3 +80,7 @@ public class Matrix {
     }
 
 }
+
+//⎡⎤
+//⎜⎟
+//⎣⎦
