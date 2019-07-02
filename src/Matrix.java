@@ -6,17 +6,16 @@ public class Matrix {
     private int SizeCol;
 
     private static final boolean debugging = false;
-    private int[][] matrix;
+    private double[][] matrix;
 
     public Matrix(int SizeRow, int SizeCol){
         this.SizeRow = SizeRow;
         this.SizeCol = SizeCol;
-        matrix = new int[SizeRow][SizeCol];
+        matrix = new double[SizeRow][SizeCol];
     }
 
     public static int prompt(String size){
-        int s = input(size);
-        return s;
+        return input(size);
     }
 
     private static int input(String msg){
@@ -31,8 +30,8 @@ public class Matrix {
     }
 
     public void initialize(){
-        for (int i = 0; i < SizeRow + 1; i++) {
-            for (int j = 0; j < SizeCol + 1; j++)
+        for (int i = 0; i < SizeRow; i++) {
+            for (int j = 0; j < SizeCol; j++)
                 matrix[i][j] = input(i, j);
         }
     }
@@ -80,7 +79,3 @@ public class Matrix {
     }
 
 }
-
-//⎡⎤
-//⎜⎟
-//⎣⎦
