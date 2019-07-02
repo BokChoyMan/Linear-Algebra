@@ -1,9 +1,10 @@
 public class Main {
     public static void main(String[] args) {
-        double[][] temp = {{1,1,1,1,0,0},{3,5,4,0,1,0},{3,6,5,0,0,1}};
-        Matrix m = new Matrix(temp);
+        double[][] arr = {{1,4,2},{3,-1,-1},{10,-5,3}};
+        Matrix m = new Matrix(arr);
         System.out.println(m);
-        System.out.println(Matrix.rref(m,true));
+        System.out.println(Matrix.reduce(m, Matrix.Reduction.UTRIANGLE, false));
+        System.out.println(Matrix.det(m,false));
     }
 
 }
