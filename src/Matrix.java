@@ -54,21 +54,21 @@ public class Matrix {
         for (int i = 0; i < SizeRow; i++) {
             for (int j = 0; j < SizeCol; j++) {
                 if(i == 0 && j == 0)
-                    str += "⎡ ";
+                    str += "\u23A1 ";
                 else if(i == SizeRow - 1 && j == 0)
-                    str += "⎣ ";
+                    str += "\u23A3 ";
                 else if(j == 0 && i != SizeRow - 1)
-                    str += "⎜ ";
+                    str += "\u239C ";
 
                 str += matrix[i][j] + " ";
 
                 if (i == 0 && j == SizeCol - 1)
-                    str += "⎤ \n";
+                    str += "\u23A4 \n";
                 else if (i == SizeRow -1 && j == SizeCol-1)
-                    str += "⎦";
+                    str += "\u23A6";
             }
             if(i != 0 && i != SizeRow-1){
-                str += "⎟\n";
+                str += "\u239F\n";
             }
         }
         return str;
