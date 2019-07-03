@@ -1,9 +1,13 @@
+import java.util.SortedMap;
+
 public class Main {
     public static void main(String[] args) {
         //construct new matrices with 2d double array
-        double[][] arr = {{-2,4},{5,-14}};
+        double[][] arrA = {{-1,1,-2},{2,0,1}};
+        double[][] arrB = {{-3,0},{1,2},{1,-2}};
         //call methods on Matrix object, ex m.inverse(true)
-        Matrix m = new Matrix(arr);
+        Matrix A = new Matrix(arrA);
+        Matrix B = new Matrix(arrB);
         /*
         Supported operations:
             -addition
@@ -16,7 +20,12 @@ public class Main {
             -different basic row operations
         Answers are given in reduced fraction form.
          */
-        m.factor(true);
+
+        System.out.println(A.multiply(B));
+        System.out.println(A.multiply(B).transpose());
+        System.out.println(A.transpose());
+        System.out.println(B.transpose());
+        System.out.println(B.transpose().multiply(A.transpose()));
     }
 
 }

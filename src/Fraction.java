@@ -120,6 +120,18 @@ public class Fraction {
         return temp;
     }
 
+    public Fraction add(int f){
+        return add(new Fraction(f));
+    }
+
+    public Fraction add(double f){
+        return add(new Fraction(f));
+    }
+
+    public Fraction add(String f){
+        return  add(new Fraction(f));
+    }
+
     /**
      *
      * @param f
@@ -129,6 +141,18 @@ public class Fraction {
         Fraction temp = new Fraction(this.numerator*f.denominator - f.numerator*this.denominator,this.denominator*f.denominator);
         temp.simplify();
         return temp;
+    }
+
+    public Fraction subtract(int f){
+        return subtract(new Fraction(f));
+    }
+
+    public Fraction subtract(double f){
+        return subtract(new Fraction(f));
+    }
+
+    public Fraction subtract(String f){
+        return  add(new Fraction(f));
     }
 
     /**
@@ -142,6 +166,18 @@ public class Fraction {
         return temp;
     }
 
+    public Fraction multiply(int f){
+        return multiply(new Fraction(f));
+    }
+
+    public Fraction multiply(double f){
+        return multiply(new Fraction(f));
+    }
+
+    public Fraction multiply(String f){
+        return multiply(new Fraction(f));
+    }
+
     /**
      * 2 Fractions are multiplied by one's inverse
      * @param f
@@ -151,6 +187,18 @@ public class Fraction {
         Fraction temp = new Fraction(this.numerator*f.denominator,this.denominator*f.numerator);
         temp.simplify();
         return temp;
+    }
+
+    public Fraction divide(int f){
+        return multiply(new Fraction(f));
+    }
+
+    public Fraction divide(double f){
+        return multiply(new Fraction(f));
+    }
+
+    public Fraction divide(String f){
+        return multiply(new Fraction(f));
     }
 
     public boolean equals(Fraction other){

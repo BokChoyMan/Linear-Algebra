@@ -46,6 +46,11 @@ public class Matrix {
     public Matrix(int row, int col) {
         matrix = new Fraction[row][col];
         size = new Dimension(row, col);
+
+        for (int i = 0; i < row; i++)
+            for (int j = 0; j < col; j++)
+                matrix[i][j] = new Fraction(0);
+
     }
 
     /**
@@ -230,13 +235,33 @@ public class Matrix {
     }
 
     /**
+     * adding each corresponding elements form 2 identically sized matrices
+     * @param m
+     * @return
+     */
+    public Matrix subtract(Matrix m) {
+
+        //throws unchecked exception if size dont match
+        if (!this.size.equals(m.size))
+            throw new MatrixDimensionMismatchException("Operation undefined, expected size : " + this.size + ". Received : " + m.size);
+
+        Matrix temp = new Matrix(this.size);
+
+        for (int i = 0; i < this.size.row; i++)
+            for (int j = 0; j < this.size.col; j++)
+                temp.matrix[i][j] = this.matrix[i][j].subtract(m.matrix[i][j]);
+
+        return temp;
+    }
+
+    /**
      * multiply 2 matrices that according to rules of matrix multiplication.
      * Each element of the product matrix, p[i][j] is the sum of m1[i][0]*m2[1][0], m1[i][1]*m2[1][j],
      * m1[i][2]*m2[2][j], etc
      * @param m
      * @return the resultant matrix of a axb matrix multiplied to a bxc matrix should be axc
      */
-    public Matrix mulitply(Matrix m) {
+    public Matrix multiply(Matrix m) {
 
         //2 matrices axb and cxd can only be multiplied if b == c
         if (this.size.col != m.size.row)
@@ -247,9 +272,36 @@ public class Matrix {
         for (int i = 0; i < this.size.row; i++)
             for (int j = 0; j < m.size.col; j++)
                 for (int k = 0; k < this.size.col; k++)
-                    temp.matrix[i][j] = matrix[i][k].multiply( m.matrix[k][j]).add(temp.matrix[i][j]);
+                    temp.matrix[i][j] = (matrix[i][k].multiply( m.matrix[k][j])).add(temp.matrix[i][j]);
 
         return temp;
+    }
+
+    /**
+     * scalar multiplication of matrix
+     * @param f
+     * @return
+     */
+    public Matrix multiply(Fraction f){
+        Matrix temp = new Matrix(this.size);
+
+        for (int i = 0; i < this.size.row; i++)
+            for (int j = 0; j < this.size.col; j++)
+                temp.matrix[i][j] = matrix[i][j].multiply(f);
+
+        return temp;
+    }
+
+    public Matrix multiply(int f){
+        return multiply(new Fraction(f));
+    }
+
+    public Matrix multiply(double f){
+        return multiply(new Fraction(f));
+    }
+
+    public Matrix multiply(String f){
+        return multiply(new Fraction(f));
     }
 
     /**
@@ -312,13 +364,11 @@ public class Matrix {
                 Fraction multiplier = new Fraction(-1).multiply( temp.matrix[i][j].divide(temp.matrix[j][j]));
                 //multiply the current row by multiplier
                 temp.rowOp_Multiply(j, multiplier);
-                showSteps(doShowStep, "Multiplying row " + j + " by " + multiplier + " : \n" + temp.toString());
                 //add the multiplied current row to the next row
                 temp.rowOp_Add(j, i);
-                showSteps(doShowStep, "Adding row " + j + " to row " + i + " : \n" + temp.toString());
                 //divide the current row by multiplier to its original reduced form
                 temp.rowOp_Divide(j, multiplier);
-                showSteps(doShowStep, "Dividing row " + j + " by " + multiplier + " :\n" + temp.toString());
+                showSteps(doShowStep, "Multiplying row " + j + " by  " + multiplier  +  " and adding row " + j + " to row " + i + " : \n" + temp.toString());
                 debug("row " + i + " is Complete");
             }
             debug("column " + j + " is Complete");
